@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% block title %}AI Recommendations — AI for Inclusive Opportunities{% endblock %}
+{% block description %}Your personalised AI-powered recommendations: jobs, skill courses, scholarships, government schemes, career roadmap and more.{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/recommendations.css') }}">{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+  <div class="page-header-bg"></div>
+  <div class="container page-header-content">
+    <div class="page-breadcrumb reveal"><a href="{{ url_for('index') }}">Home</a> <i class="fas fa-chevron-right"></i> Recommendations</div>
+    <h1 class="reveal"><i class="fas fa-lightbulb" style="color:var(--clr-accent)"></i> Your AI <span class="text-gradient">Recommendations</span></h1>
+    <p class="reveal">Personalised opportunities curated just for you by our AI engine.</p>
+  </div>
+</div>
+
+<section class="section-pad recs-section">
+  <div class="container">
+
+    <!-- No user state -->
+    <div id="noUserState" class="no-user-state reveal" style="display:none">
+      <div class="glass-card text-center" style="max-width:500px;margin:0 auto;padding:3rem">
+        <i class="fas fa-search" style="font-size:3rem;color:var(--clr-primary);margin-bottom:1.5rem;display:block"></i>
+        <h2>No Profile Found</h2>
+        <p style="margin:1rem 0 2rem">Please fill out your profile first so our AI can generate personalised recommendations for you.</p>
+        <a href="{{ url_for('finder') }}" class="btn btn-primary"><i class="fas fa-arrow-right"></i> Fill My Profile</a>
+      </div>
+    </div>
+
+    <!-- Loading state -->
+    <div id="recsLoading" class="recs-loading" style="display:none">
+      <div class="spinner" style="width:60px;height:60px;margin:0 auto 2rem"></div>
+      <p>Loading your recommendations…</p>
+    </div>
+
+    <!-- Main recommendations content -->
+    <div id="recsContent" style="display:none">
+
+      <!-- User Profile Banner -->
+      <div class="user-banner glass-card reveal">
+        <div class="user-avatar"><i class="fas fa-user-circle"></i></div>
+        <div class="user-info">
+          <h3 id="recUserName">User</h3>
+          <div class="user-tags" id="userTags"></div>
+        </div>
+        <div class="priority-score-badge">
+          <div class="priority-ring">
+            <svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="32" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="6"/><circle id="priorityCircle" cx="40" cy="40" r="32" fill="none" stroke="url(#grad)" stroke-width="6" stroke-linecap="round" stroke-dasharray="201" stroke-dashoffset="201" transform="rotate(-90 40 40)"/><defs><linearGradient id="grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#6c63ff"/><stop offset="100%" stop-color="#ffd700"/></linearGradient></defs></svg>
+            <span id="priorityScoreText">0</span>
+          </div>
+          <div class="priority-label">Priority Score</div>
+        </div>
+        <a href="{{ url_for('finder') }}" class="btn btn-outline btn-sm"><i class="fas fa-edit"></i> Update Profile</a>
+      </div>
+
+      <!-- Tabs -->
+      <div class="rec-tabs reveal">
+        <button class="rec-tab active" data-tab="jobs"><i class="fas fa-briefcase"></i> Jobs</button>
+        <button class="rec-tab" data-tab="courses"><i class="fas fa-graduation-cap"></i> Courses</button>
+        <button class="rec-tab" data-tab="scholarships"><i class="fas fa-award"></i> Scholarships</button>
+        <button class="rec-tab" data-tab="schemes"><i class="fas fa-university"></i> Gov. Schemes</button>
+        <button class="rec-tab" data-tab="roadmap"><i class="fas fa-road"></i> Roadmap</button>
+        <button class="rec-tab" data-tab="skills"><i class="fas fa-tools"></i> Skills Gap</button>
+      </div>
+
+      <!-- Tab Panels -->
+      <div class="rec-tab-panels">
+
+        <!-- Jobs -->
+        <div class="rec-panel active" id="panel-jobs">
+          <div class="panel-header">
+            <h3><i class="fas fa-briefcase"></i> Suitable Jobs</h3>
+            <div class="salary-badge"><i class="fas fa-rupee-sign"></i> Estimated Range: <strong id="salaryRange">—</strong></div>
+          </div>
+          <div class="rec-cards-grid" id="jobsGrid"></div>
+        </div>
+
+        <!-- Courses -->
+        <div class="rec-panel" id="panel-courses">
+          <div class="panel-header"><h3><i class="fas fa-graduation-cap"></i> Recommended Skill Courses</h3></div>
+          <div class="rec-cards-grid" id="coursesGrid"></div>
+        </div>
+
+        <!-- Scholarships -->
+        <div class="rec-panel" id="panel-scholarships">
+          <div class="panel-header"><h3><i class="fas fa-award"></i> Scholarships</h3></div>
+          <div class="rec-cards-grid" id="scholarshipsGrid"></div>
+        </div>
+
+        <!-- Schemes -->
+        <div class="rec-panel" id="panel-schemes">
+          <div class="panel-header"><h3><i class="fas fa-university"></i> Government Schemes</h3></div>
+          <div class="rec-cards-grid" id="schemesGrid"></div>
+        </div>
+
+        <!-- Roadmap -->
+        <div class="rec-panel" id="panel-roadmap">
+          <div class="panel-header"><h3><i class="fas fa-road"></i> Career Roadmap</h3></div>
+          <div class="roadmap-timeline" id="roadmapTimeline"></div>
+        </div>
+
+        <!-- Skills Gap -->
+        <div class="rec-panel" id="panel-skills">
+          <div class="panel-header"><h3><i class="fas fa-tools"></i> Missing Skills to Acquire</h3></div>
+          <div id="missingSkillsContent"></div>
+        </div>
+
+      </div><!-- /tab-panels -->
+    </div><!-- /recsContent -->
+  </div>
+</section>
+
+{% endblock %}
+{% block extra_js %}
+<script>
+  const USER_ID = {{ user_id|tojson if user_id else 'null' }};
+</script>
+<script src="{{ url_for('static', filename='js/recommendations.js') }}"></script>
+{% endblock %}

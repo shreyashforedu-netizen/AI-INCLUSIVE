@@ -1,0 +1,305 @@
+{% extends "base.html" %}
+{% block title %}Opportunity Finder — AI for Inclusive Opportunities{% endblock %}
+{% block description %}Fill out your profile and let our AI find the best jobs, courses, scholarships and government schemes for you.{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/finder.css') }}">{% endblock %}
+
+{% block content %}
+
+<!-- Page Header -->
+<div class="page-header">
+  <div class="page-header-bg"></div>
+  <div class="container page-header-content">
+    <div class="page-breadcrumb reveal"><a href="{{ url_for('index') }}">Home</a> <i class="fas fa-chevron-right"></i> Opportunity Finder</div>
+    <h1 class="reveal"><i class="fas fa-search" style="color:var(--clr-primary)"></i> Opportunity <span class="text-gradient">Finder</span></h1>
+    <p class="reveal">Tell us about yourself and our AI will map your best career path in seconds.</p>
+  </div>
+</div>
+
+<section class="section-pad finder-section">
+  <div class="container">
+    <div class="finder-wrapper">
+
+      <!-- Progress Bar -->
+      <div class="finder-progress reveal">
+        <div class="progress-steps">
+          <div class="progress-step active" id="step-ind-1">
+            <div class="step-bubble">1</div>
+            <span>Personal Info</span>
+          </div>
+          <div class="progress-line" id="line-1"></div>
+          <div class="progress-step" id="step-ind-2">
+            <div class="step-bubble">2</div>
+            <span>Education &amp; Skills</span>
+          </div>
+          <div class="progress-line" id="line-2"></div>
+          <div class="progress-step" id="step-ind-3">
+            <div class="step-bubble">3</div>
+            <span>Career Goals</span>
+          </div>
+        </div>
+        <div class="progress-bar-track">
+          <div class="progress-bar-fill" id="progressFill"></div>
+        </div>
+      </div>
+
+      <!-- Form Card -->
+      <div class="glass-card finder-card reveal">
+        <form id="opportunityForm" novalidate>
+
+          <!-- ── STEP 1: Personal Info ── -->
+          <div class="form-step active" id="formStep1">
+            <div class="step-header">
+              <div class="step-icon-large"><i class="fas fa-user"></i></div>
+              <h2>Personal <span class="text-gradient">Information</span></h2>
+              <p>Tell us a little about yourself to personalise your recommendations.</p>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label" for="name"><i class="fas fa-user"></i> Full Name *</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter your full name" required autocomplete="name">
+                <div class="field-error" id="nameErr"></div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="age"><i class="fas fa-birthday-cake"></i> Age *</label>
+                <input type="number" class="form-control" id="age" name="age" placeholder="e.g. 22" min="14" max="70" required>
+                <div class="field-error" id="ageErr"></div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="gender"><i class="fas fa-venus-mars"></i> Gender</label>
+                <select class="form-control" id="gender" name="gender">
+                  <option value="">Select gender</option>
+                  <option>Male</option><option>Female</option>
+                  <option>Non-binary</option><option>Prefer not to say</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="state"><i class="fas fa-map-marker-alt"></i> State / UT *</label>
+                <select class="form-control" id="state" name="state" required>
+                  <option value="">Select your state</option>
+                  <option>Andhra Pradesh</option><option>Arunachal Pradesh</option><option>Assam</option>
+                  <option>Bihar</option><option>Chhattisgarh</option><option>Goa</option>
+                  <option>Gujarat</option><option>Haryana</option><option>Himachal Pradesh</option>
+                  <option>Jharkhand</option><option>Karnataka</option><option>Kerala</option>
+                  <option>Madhya Pradesh</option><option>Maharashtra</option><option>Manipur</option>
+                  <option>Meghalaya</option><option>Mizoram</option><option>Nagaland</option>
+                  <option>Odisha</option><option>Punjab</option><option>Rajasthan</option>
+                  <option>Sikkim</option><option>Tamil Nadu</option><option>Telangana</option>
+                  <option>Tripura</option><option>Uttar Pradesh</option><option>Uttarakhand</option>
+                  <option>West Bengal</option><option>Delhi</option><option>Jammu &amp; Kashmir</option>
+                  <option>Ladakh</option><option>Chandigarh</option><option>Puducherry</option>
+                  <option>Lakshadweep</option><option>Andaman &amp; Nicobar</option><option>Dadra &amp; Nagar Haveli</option>
+                </select>
+                <div class="field-error" id="stateErr"></div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="language"><i class="fas fa-language"></i> Preferred Language</label>
+                <select class="form-control" id="language" name="language">
+                  <option value="">Select language</option>
+                  <option>English</option><option>Hindi</option><option>Tamil</option>
+                  <option>Telugu</option><option>Kannada</option><option>Bengali</option>
+                  <option>Marathi</option><option>Gujarati</option><option>Punjabi</option>
+                  <option>Malayalam</option><option>Odia</option><option>Assamese</option>
+                  <option>Urdu</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="annual_income"><i class="fas fa-rupee-sign"></i> Annual Family Income (₹)</label>
+                <select class="form-control" id="annual_income" name="annual_income">
+                  <option value="0">Select income range</option>
+                  <option value="50000">Below ₹50,000</option>
+                  <option value="100000">₹50,001 – ₹1,00,000</option>
+                  <option value="150000">₹1,00,001 – ₹1,50,000</option>
+                  <option value="250000">₹1,50,001 – ₹2,50,000</option>
+                  <option value="400000">₹2,50,001 – ₹4,00,000</option>
+                  <option value="600000">₹4,00,001 – ₹6,00,000</option>
+                  <option value="1000000">Above ₹6,00,000</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="step-nav">
+              <div></div>
+              <button type="button" class="btn btn-primary" id="toStep2">Next Step <i class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+
+          <!-- ── STEP 2: Education & Skills ── -->
+          <div class="form-step" id="formStep2">
+            <div class="step-header">
+              <div class="step-icon-large" style="background:var(--grad-gold)"><i class="fas fa-graduation-cap"></i></div>
+              <h2>Education &amp; <span class="text-gradient">Skills</span></h2>
+              <p>Your background helps us find the most suitable opportunities.</p>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-group" style="grid-column:1/-1">
+                <label class="form-label" for="education"><i class="fas fa-school"></i> Highest Education Level *</label>
+                <select class="form-control" id="education" name="education" required>
+                  <option value="">Select education level</option>
+                  <option>Below 5th</option><option>5th Pass</option><option>8th Pass</option>
+                  <option>10th Pass (SSC)</option><option>12th Pass (HSC)</option>
+                  <option>ITI / Diploma</option><option>Graduate (B.A / B.Sc / B.Com)</option>
+                  <option>B.Tech / B.E (Engineering)</option><option>Post Graduate (M.A / M.Sc / M.Com)</option>
+                  <option>MBA / PGDM</option><option>M.Tech / M.E</option>
+                  <option>PhD / Doctorate</option><option>Professional Degree (MBBS/LLB/CA)</option>
+                </select>
+                <div class="field-error" id="educationErr"></div>
+              </div>
+
+              <div class="form-group" style="grid-column:1/-1">
+                <label class="form-label" for="skills"><i class="fas fa-tools"></i> Skills <small>(comma separated)</small></label>
+                <textarea class="form-control" id="skills" name="skills" rows="3"
+                  placeholder="e.g. Python, MS Office, English communication, Drawing, Tailoring, Mobile repair..."></textarea>
+                <div class="skills-chips" id="skillsChips"></div>
+              </div>
+
+              <div class="form-group" style="grid-column:1/-1">
+                <label class="form-label" for="interests"><i class="fas fa-heart"></i> Interests &amp; Hobbies</label>
+                <textarea class="form-control" id="interests" name="interests" rows="2"
+                  placeholder="e.g. Reading, Cooking, Technology, Sports, Art..."></textarea>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="employment"><i class="fas fa-briefcase"></i> Current Employment Status</label>
+                <select class="form-control" id="employment" name="employment">
+                  <option value="">Select status</option>
+                  <option>Unemployed</option><option>Employed (Full Time)</option>
+                  <option>Employed (Part Time)</option><option>Self Employed</option>
+                  <option>Student</option><option>Homemaker</option>
+                  <option>Daily Wage Worker</option><option>Farmer</option>
+                  <option>Gig Worker</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="step-nav">
+              <button type="button" class="btn btn-outline" id="toStep1Back"><i class="fas fa-arrow-left"></i> Previous</button>
+              <button type="button" class="btn btn-primary" id="toStep3">Next Step <i class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+
+          <!-- ── STEP 3: Career Goals ── -->
+          <div class="form-step" id="formStep3">
+            <div class="step-header">
+              <div class="step-icon-large" style="background:linear-gradient(135deg,#10b981,#059669)"><i class="fas fa-bullseye"></i></div>
+              <h2>Career <span class="text-gradient">Goals</span></h2>
+              <p>Let us know where you want to go — our AI will map the best path.</p>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-group" style="grid-column:1/-1">
+                <label class="form-label" for="preferred_career"><i class="fas fa-star"></i> Preferred Career / Field *</label>
+                <select class="form-control" id="preferred_career" name="preferred_career" required>
+                  <option value="">Select career preference</option>
+                  <optgroup label="Technology">
+                    <option>Software Development</option><option>Data Science &amp; AI</option>
+                    <option>Web Development</option><option>Cybersecurity</option>
+                    <option>Digital Marketing</option><option>IT Support</option>
+                  </optgroup>
+                  <optgroup label="Healthcare">
+                    <option>Nursing / Healthcare</option><option>Medical Lab Technology</option>
+                    <option>Pharmacy</option><option>Community Health</option>
+                  </optgroup>
+                  <optgroup label="Finance &amp; Commerce">
+                    <option>Banking &amp; Finance</option><option>Accounting &amp; Taxation</option>
+                    <option>Insurance</option><option>Government Jobs (Banking)</option>
+                  </optgroup>
+                  <optgroup label="Agriculture">
+                    <option>Agriculture &amp; Farming</option><option>Food Processing</option>
+                    <option>Agri-Tech</option>
+                  </optgroup>
+                  <optgroup label="Skill Trades">
+                    <option>Electrical / Plumbing</option><option>Automobile / Mechanic</option>
+                    <option>Tailoring &amp; Fashion</option><option>Construction / Civil</option>
+                  </optgroup>
+                  <optgroup label="Education &amp; Social">
+                    <option>Teaching / Education</option><option>Social Work / NGO</option>
+                    <option>Journalism / Media</option>
+                  </optgroup>
+                  <optgroup label="Creative">
+                    <option>Graphic Design / Animation</option><option>Content Creation</option>
+                    <option>Photography &amp; Videography</option>
+                  </optgroup>
+                  <optgroup label="Government">
+                    <option>Civil Services (IAS/IPS/IFS)</option><option>Defence (Army/Navy/Air Force)</option>
+                    <option>Police &amp; Paramilitary</option><option>Railway Jobs</option>
+                    <option>PSU / Government Sector</option>
+                  </optgroup>
+                  <option value="other">Other / Not Sure</option>
+                </select>
+                <div class="field-error" id="careerErr"></div>
+              </div>
+            </div>
+
+            <!-- Summary Preview -->
+            <div class="summary-preview" id="summaryPreview">
+              <h4><i class="fas fa-eye"></i> Profile Summary</h4>
+              <div class="summary-chips" id="summaryChips"></div>
+            </div>
+
+            <div class="step-nav">
+              <button type="button" class="btn btn-outline" id="toStep2Back"><i class="fas fa-arrow-left"></i> Previous</button>
+              <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">
+                <i class="fas fa-rocket"></i> Find My Opportunities
+              </button>
+            </div>
+          </div>
+
+          <!-- Loading State -->
+          <div class="form-loading" id="formLoading" style="display:none">
+            <div class="loading-anim">
+              <div class="spinner"></div>
+              <div class="loading-dots"><span></span><span></span><span></span></div>
+            </div>
+            <h3>AI is Analysing Your Profile…</h3>
+            <p>Matching you to jobs, courses, scholarships &amp; government schemes</p>
+            <div class="loading-steps" id="loadingSteps">
+              <div class="loading-step"><i class="fas fa-check-circle"></i> Profile received</div>
+              <div class="loading-step pending"><i class="fas fa-circle-notch fa-spin"></i> Running AI engine</div>
+              <div class="loading-step pending"><i class="fas fa-circle-notch fa-spin"></i> Matching opportunities</div>
+              <div class="loading-step pending"><i class="fas fa-circle-notch fa-spin"></i> Preparing recommendations</div>
+            </div>
+          </div>
+
+        </form>
+      </div><!-- /finder-card -->
+
+      <!-- Tips Sidebar -->
+      <div class="finder-tips reveal">
+        <div class="glass-card tips-card">
+          <h4><i class="fas fa-lightbulb" style="color:var(--clr-accent)"></i> Tips for Better Results</h4>
+          <ul class="tips-list">
+            <li><i class="fas fa-check"></i> List all your skills, even informal ones (e.g. Driving, Cooking)</li>
+            <li><i class="fas fa-check"></i> Be honest about income — it helps match government schemes</li>
+            <li><i class="fas fa-check"></i> Select the career field you are most passionate about</li>
+            <li><i class="fas fa-check"></i> All information is secure and never shared</li>
+          </ul>
+          <div class="tip-stat">
+            <div class="tip-stat-num">4 min</div>
+            <div class="tip-stat-label">Average time to complete</div>
+          </div>
+        </div>
+
+        <div class="glass-card privacy-card">
+          <div class="privacy-icon"><i class="fas fa-shield-alt"></i></div>
+          <h4>Your Privacy is Protected</h4>
+          <p>Your data is stored securely in a local database. We never sell or share your information with third parties.</p>
+          <div class="privacy-badges">
+            <span><i class="fas fa-lock"></i> Encrypted</span>
+            <span><i class="fas fa-user-secret"></i> Private</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /finder-wrapper -->
+  </div>
+</section>
+
+{% endblock %}
+{% block extra_js %}<script src="{{ url_for('static', filename='js/finder.js') }}"></script>{% endblock %}

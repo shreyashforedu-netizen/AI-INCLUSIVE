@@ -1,0 +1,269 @@
+{% extends "base.html" %}
+{% block title %}Home — AI for Inclusive Opportunities{% endblock %}
+{% block description %}AI-powered platform helping underprivileged individuals find jobs, courses, scholarships and government schemes. Supporting SDG 1 & SDG 10.{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">{% endblock %}
+
+{% block content %}
+
+<!-- ══════════════════════════════════════════
+     HERO SECTION
+══════════════════════════════════════════ -->
+<section class="hero" id="hero">
+  <!-- Video background (place hero-bg.mp4 in static/videos/) -->
+  <div class="hero-video-wrapper">
+    <video id="heroBgVideo" autoplay loop muted playsinline
+           poster="{{ url_for('static', filename='images/hero-poster.jpg') }}"
+           onerror="this.parentElement.style.display='none'">
+      <source src="{{ url_for('static', filename='videos/hero-bg.mp4') }}" type="video/mp4">
+    </video>
+  </div>
+
+  <!-- Animated fallback background -->
+  <div class="hero-bg-fallback"></div>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-orb hero-orb-3"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <!-- SDG Badges -->
+    <div class="hero-sdg-badges">
+      <span class="sdg-badge-hero sdg1"><i class="fas fa-hand-holding-heart"></i> SDG 1 · No Poverty</span>
+      <span class="sdg-badge-hero sdg10"><i class="fas fa-equals"></i> SDG 10 · Reduced Inequalities</span>
+      <span class="sdg-badge-hero un"><i class="fas fa-globe"></i> UN Agenda 2030</span>
+    </div>
+
+    <!-- Title -->
+    <h1 class="hero-title">
+      <span class="text-gradient">AI-Powered</span><br>
+      <span class="line-2">Inclusive <span class="text-gold typewriter" id="typewriterText">Opportunities</span></span>
+    </h1>
+
+    <p class="hero-tagline">
+      Discover jobs, skill courses, scholarships and government schemes tailored to <strong>your profile</strong> — powered by AI, designed for equity.
+    </p>
+
+    <div class="hero-cta">
+      <a href="{{ url_for('finder') }}" class="btn btn-primary btn-lg">
+        <i class="fas fa-rocket"></i> Get Started — It's Free
+      </a>
+      <a href="{{ url_for('about') }}" class="btn btn-outline btn-lg">
+        <i class="fas fa-play-circle"></i> Learn More
+      </a>
+    </div>
+  </div>
+
+  <!-- Stats bar -->
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num" data-target="50000" data-suffix="+">0</div>
+      <div class="hero-stat-label">Users Empowered</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num" data-target="1200" data-suffix="+">0</div>
+      <div class="hero-stat-label">Opportunities Listed</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num" data-target="28" data-suffix="">0</div>
+      <div class="hero-stat-label">States Covered</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num" data-target="95" data-suffix="%">0</div>
+      <div class="hero-stat-label">Satisfaction Rate</div>
+    </div>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="scroll-indicator">
+    <span>Scroll to explore</span>
+    <i class="fas fa-chevron-down"></i>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     FEATURES
+══════════════════════════════════════════ -->
+<section class="features-section section-pad" id="features">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="subtitle">What We Offer</div>
+      <h2>AI-Driven <span class="text-gradient">Opportunity Engine</span></h2>
+      <p>Our platform intelligently maps your profile to the most relevant opportunities across India.</p>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="grid-3 stagger-children">
+      <div class="glass-card feature-card">
+        <div class="feature-icon-wrap"><i class="fas fa-brain" style="color:#6c63ff"></i></div>
+        <h3>AI Recommendations</h3>
+        <p>Smart matching of your skills, education and interests to curated jobs, courses and schemes.</p>
+      </div>
+      <div class="glass-card feature-card">
+        <div class="feature-icon-wrap"><i class="fas fa-graduation-cap" style="color:#a855f7"></i></div>
+        <h3>Skill Development</h3>
+        <p>Personalized course suggestions from NPTEL, Coursera, PMKVY and top free platforms.</p>
+      </div>
+      <div class="glass-card feature-card">
+        <div class="feature-icon-wrap"><i class="fas fa-university" style="color:#ffd700"></i></div>
+        <h3>Government Schemes</h3>
+        <p>Access 50+ central and state government schemes you qualify for based on your income and profile.</p>
+      </div>
+      <div class="glass-card feature-card">
+        <div class="feature-icon-wrap"><i class="fas fa-award" style="color:#10b981"></i></div>
+        <h3>Scholarships</h3>
+        <p>Find NSP, PM, state and institution-level scholarships that match your academic background.</p>
+      </div>
+      <div class="glass-card feature-card">
+        <div class="feature-icon-wrap"><i class="fas fa-road" style="color:#f59e0b"></i></div>
+        <h3>Career Roadmap</h3>
+        <p>Step-by-step personalized career path from today's skills to your dream career goal.</p>
+      </div>
+      <div class="glass-card feature-card">
+        <div class="feature-icon-wrap"><i class="fas fa-language" style="color:#ec4899"></i></div>
+        <h3>Multilingual Support</h3>
+        <p>Platform available in English, Hindi and regional languages for maximum accessibility.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SDG IMPACT SECTION
+══════════════════════════════════════════ -->
+<section class="sdg-section" id="sdg">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="subtitle">Our Commitment</div>
+      <h2>Supporting <span class="text-gradient">United Nations SDGs</span></h2>
+      <p>Every feature we build is aligned with two core UN Sustainable Development Goals.</p>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="sdg-cards">
+      <div class="glass-card sdg-card sdg-card-1 reveal-left">
+        <div class="sdg-card-number">1</div>
+        <div class="sdg-card-icon"><i class="fas fa-hand-holding-heart"></i></div>
+        <span class="sdg-badge sdg1">SDG Goal 1</span>
+        <h3 style="margin-top:1rem">No Poverty</h3>
+        <p>End poverty in all its forms everywhere by 2030 through economic inclusion and access to resources.</p>
+        <div class="sdg-targets">
+          <div class="sdg-target"><i class="fas fa-check-circle"></i> Income support through government schemes</div>
+          <div class="sdg-target"><i class="fas fa-check-circle"></i> Job matching for underprivileged communities</div>
+          <div class="sdg-target"><i class="fas fa-check-circle"></i> Financial literacy resources</div>
+        </div>
+      </div>
+
+      <div class="glass-card sdg-card sdg-card-10 reveal-right">
+        <div class="sdg-card-number">10</div>
+        <div class="sdg-card-icon"><i class="fas fa-equals"></i></div>
+        <span class="sdg-badge sdg10">SDG Goal 10</span>
+        <h3 style="margin-top:1rem">Reduced Inequalities</h3>
+        <p>Reduce inequality within and among countries by ensuring equal opportunity regardless of background.</p>
+        <div class="sdg-targets">
+          <div class="sdg-target"><i class="fas fa-check-circle"></i> Equal access to education & skill training</div>
+          <div class="sdg-target"><i class="fas fa-check-circle"></i> Inclusive platform for all genders & regions</div>
+          <div class="sdg-target"><i class="fas fa-check-circle"></i> Bridging digital divide with vernacular support</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     NO ONE LEFT BEHIND
+══════════════════════════════════════════ -->
+<section class="nolb-section" id="nolb">
+  <div class="container">
+    <div class="reveal">
+      <div class="subtitle" style="color:var(--clr-accent)">Our Promise</div>
+      <h2><span class="text-gold">"No One</span> Left <span class="text-gradient">Behind"</span></h2>
+      <p>
+        In India, 229 million people live in poverty. We believe technology and AI can be a powerful equalizer — connecting every individual to the opportunity they deserve.
+      </p>
+    </div>
+
+    <div class="nolb-stats stagger-children">
+      <div class="nolb-stat">
+        <span class="nolb-num" data-target="229" data-suffix="M">0M</span>
+        <div class="nolb-label">People in Poverty in India</div>
+      </div>
+      <div class="nolb-stat">
+        <span class="nolb-num" data-target="70" data-suffix="%">0%</span>
+        <div class="nolb-label">Lack Awareness of Gov. Schemes</div>
+      </div>
+      <div class="nolb-stat">
+        <span class="nolb-num" data-target="400" data-suffix="M+">0</span>
+        <div class="nolb-label">Youth Needing Skill Training</div>
+      </div>
+      <div class="nolb-stat">
+        <span class="nolb-num" data-target="100" data-suffix="%">0%</span>
+        <div class="nolb-label">Free Platform for All</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     HOW IT WORKS
+══════════════════════════════════════════ -->
+<section class="how-section section-pad" id="how">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="subtitle">Simple Process</div>
+      <h2>How It <span class="text-gradient">Works</span></h2>
+      <p>Get personalised AI recommendations in just 4 easy steps — no technical knowledge needed.</p>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="steps-wrapper stagger-children">
+      <div class="glass-card step-card">
+        <div class="step-number">1</div>
+        <div class="step-icon"><i class="fas fa-user-edit"></i></div>
+        <h3>Fill Your Profile</h3>
+        <p>Share your education, skills, income, and career goals using our simple form.</p>
+      </div>
+      <div class="glass-card step-card">
+        <div class="step-number">2</div>
+        <div class="step-icon"><i class="fas fa-cogs"></i></div>
+        <h3>AI Analysis</h3>
+        <p>Our engine analyses your profile and matches you to the best opportunities.</p>
+      </div>
+      <div class="glass-card step-card">
+        <div class="step-number">3</div>
+        <div class="step-icon"><i class="fas fa-th-large"></i></div>
+        <h3>Get Recommendations</h3>
+        <p>Receive personalised cards: jobs, courses, scholarships, schemes and roadmap.</p>
+      </div>
+      <div class="glass-card step-card">
+        <div class="step-number">4</div>
+        <div class="step-icon"><i class="fas fa-arrow-up"></i></div>
+        <h3>Take Action</h3>
+        <p>Apply, enrol, and track your progress toward your career and financial goals.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     CTA BANNER
+══════════════════════════════════════════ -->
+<section class="section-pad">
+  <div class="container">
+    <div class="cta-banner reveal">
+      <h2>Ready to Discover Your <span class="text-gold">Opportunities?</span></h2>
+      <p>Join thousands of individuals already using AI to build a better future.</p>
+      <div>
+        <a href="{{ url_for('finder') }}" class="btn btn-gold btn-lg">
+          <i class="fas fa-search"></i> Find My Opportunities
+        </a>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-outline btn-lg">
+          <i class="fas fa-chart-bar"></i> View Dashboard
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+{% block extra_js %}<script src="{{ url_for('static', filename='js/home.js') }}"></script>{% endblock %}

@@ -1,0 +1,184 @@
+{% extends "base.html" %}
+{% block title %}Contact Us — AI for Inclusive Opportunities{% endblock %}
+{% block description %}Get in touch with the AI for Inclusive Opportunities team. Share your feedback, suggestions, or questions.{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/contact.css') }}">{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+  <div class="page-header-bg"></div>
+  <div class="container page-header-content">
+    <div class="page-breadcrumb reveal"><a href="{{ url_for('index') }}">Home</a> <i class="fas fa-chevron-right"></i> Contact</div>
+    <h1 class="reveal"><i class="fas fa-envelope" style="color:var(--clr-primary)"></i> Get In <span class="text-gradient">Touch</span></h1>
+    <p class="reveal">Share your feedback, questions, or partnership inquiries. We'd love to hear from you.</p>
+  </div>
+</div>
+
+<section class="section-pad contact-section">
+  <div class="container">
+    <div class="contact-grid">
+
+      <!-- Contact Info -->
+      <div class="contact-info-col reveal-left">
+        <div class="glass-card contact-info-card">
+          <h3>Let's <span class="text-gradient">Connect</span></h3>
+          <p>Have a question about the platform? Want to partner with us for social impact? We're here to help.</p>
+
+          <div class="contact-items">
+            <div class="contact-item">
+              <div class="ci-icon"><i class="fas fa-envelope"></i></div>
+              <div class="ci-info">
+                <div class="ci-label">Email</div>
+                <div class="ci-value">support@aiinclusive.org</div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="ci-icon" style="background:rgba(16,185,129,.12);color:var(--clr-success)"><i class="fas fa-phone"></i></div>
+              <div class="ci-info">
+                <div class="ci-label">Phone</div>
+                <div class="ci-value">+91 98765 43210</div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="ci-icon" style="background:rgba(255,215,0,.1);color:var(--clr-accent)"><i class="fas fa-map-marker-alt"></i></div>
+              <div class="ci-info">
+                <div class="ci-label">Location</div>
+                <div class="ci-value">Pune, Maharashtra, India 🇮🇳</div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="ci-icon" style="background:rgba(236,72,153,.12);color:var(--clr-pink)"><i class="fas fa-clock"></i></div>
+              <div class="ci-info">
+                <div class="ci-label">Response Time</div>
+                <div class="ci-value">Within 24–48 hours</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-social">
+            <h4>Follow Our Journey</h4>
+            <div class="social-links">
+              <a href="#" class="social-link" aria-label="GitHub"><i class="fab fa-github"></i></a>
+              <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="#" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+
+          <!-- SDG commitment reminder -->
+          <div class="sdg-reminder">
+            <div class="sdg-reminder-icon"><i class="fas fa-globe"></i></div>
+            <div>
+              <strong>SDG Aligned Project</strong>
+              <p>Supporting SDG 1 (No Poverty) &amp; SDG 10 (Reduced Inequalities) — UN Agenda 2030.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feedback Form -->
+      <div class="contact-form-col reveal-right">
+        <div class="glass-card contact-form-card">
+          <h3>Send Us a <span class="text-gradient">Message</span></h3>
+          <p style="margin-bottom:2rem">Fill out the form below and we'll get back to you as soon as possible.</p>
+
+          <!-- Success Message -->
+          <div class="form-success" id="formSuccess" style="display:none">
+            <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+            <h3>Message Sent!</h3>
+            <p>Thank you for reaching out. We'll get back to you within 24–48 hours.</p>
+            <button class="btn btn-primary" id="sendAnother"><i class="fas fa-pen"></i> Send Another</button>
+          </div>
+
+          <form id="contactForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="cName"><i class="fas fa-user"></i> Full Name *</label>
+                <input type="text" class="form-control" id="cName" placeholder="Your name" required autocomplete="name">
+                <div class="field-error" id="cNameErr"></div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="cEmail"><i class="fas fa-envelope"></i> Email Address *</label>
+                <input type="email" class="form-control" id="cEmail" placeholder="your@email.com" required autocomplete="email">
+                <div class="field-error" id="cEmailErr"></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="cSubject"><i class="fas fa-tag"></i> Subject *</label>
+              <select class="form-control" id="cSubject" required>
+                <option value="">Select subject</option>
+                <option>General Feedback</option>
+                <option>Bug Report</option>
+                <option>Feature Request</option>
+                <option>Partnership Inquiry</option>
+                <option>Career Guidance Query</option>
+                <option>Technical Support</option>
+                <option>Media / Press Inquiry</option>
+                <option>Other</option>
+              </select>
+              <div class="field-error" id="cSubjectErr"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="cMessage"><i class="fas fa-comment"></i> Message *</label>
+              <textarea class="form-control" id="cMessage" rows="5"
+                placeholder="Write your message here… Be as detailed as possible." required></textarea>
+              <div class="char-count"><span id="charCount">0</span>/500</div>
+              <div class="field-error" id="cMessageErr"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label"><i class="fas fa-star"></i> Rate Your Experience (Optional)</label>
+              <div class="star-rating" id="starRating">
+                <i class="far fa-star" data-val="1"></i>
+                <i class="far fa-star" data-val="2"></i>
+                <i class="far fa-star" data-val="3"></i>
+                <i class="far fa-star" data-val="4"></i>
+                <i class="far fa-star" data-val="5"></i>
+              </div>
+              <input type="hidden" id="ratingVal" value="0">
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg" id="contactSubmitBtn" style="width:100%;justify-content:center">
+              <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+
+    </div><!-- /contact-grid -->
+
+    <!-- FAQ Section -->
+    <div class="faq-section reveal" style="margin-top:4rem">
+      <div class="section-header">
+        <div class="subtitle">Quick Answers</div>
+        <h2>Frequently Asked <span class="text-gradient">Questions</span></h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="faq-grid">
+        <div class="glass-card faq-item">
+          <div class="faq-q"><i class="fas fa-question-circle"></i> Is this platform completely free?</div>
+          <div class="faq-a">Yes! AI for Inclusive Opportunities is 100% free with no hidden charges. It will always remain free as part of our mission.</div>
+        </div>
+        <div class="glass-card faq-item">
+          <div class="faq-q"><i class="fas fa-question-circle"></i> How accurate are the recommendations?</div>
+          <div class="faq-a">Our rule-based AI engine matches your profile to curated, verified databases of jobs, courses, and government schemes updated monthly.</div>
+        </div>
+        <div class="glass-card faq-item">
+          <div class="faq-q"><i class="fas fa-question-circle"></i> Is my data safe and private?</div>
+          <div class="faq-a">Absolutely. Your data is stored in a local encrypted database and is never sold or shared with any third party.</div>
+        </div>
+        <div class="glass-card faq-item">
+          <div class="faq-q"><i class="fas fa-question-circle"></i> Can I update my profile anytime?</div>
+          <div class="faq-a">Yes. Visit the Opportunity Finder anytime to re-fill your profile and generate fresh, updated recommendations.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}
+{% block extra_js %}<script src="{{ url_for('static', filename='js/contact.js') }}"></script>{% endblock %}

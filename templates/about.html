@@ -1,0 +1,262 @@
+{% extends "base.html" %}
+{% block title %}About — AI for Inclusive Opportunities{% endblock %}
+{% block description %}Learn what inclusion means, why poverty exists, how AI can help, and our mission and vision for a more equitable India.{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">{% endblock %}
+
+{% block content %}
+
+<!-- Page Header -->
+<div class="page-header">
+  <div class="page-header-bg"></div>
+  <div class="page-header-orb"></div>
+  <div class="container page-header-content">
+    <div class="page-breadcrumb reveal"><a href="{{ url_for('index') }}">Home</a> <i class="fas fa-chevron-right"></i> About</div>
+    <h1 class="reveal">About <span class="text-gradient">Our Mission</span></h1>
+    <p class="reveal">Understanding the problem. Building the solution. Empowering the people.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     WHAT IS INCLUSION
+══════════════════════════════════════════ -->
+<section class="section-pad" id="inclusion">
+  <div class="container">
+    <div class="about-intro-grid">
+      <div class="about-intro-text reveal-left">
+        <div class="subtitle">Definition</div>
+        <h2>What is <span class="text-gradient">Inclusion</span>?</h2>
+        <p>
+          Inclusion means ensuring that every person — regardless of their gender, caste, religion, income, disability, or geographic location — has equal access to opportunities, resources, and dignity.
+        </p>
+        <p>
+          In the context of economic inclusion, it means making sure that marginalised communities can participate fully in the economy: finding decent work, accessing education, and benefiting from government support systems.
+        </p>
+        <div class="inclusion-pillars stagger-children">
+          <div class="pillar-item">
+            <i class="fas fa-users" style="color:var(--clr-primary)"></i>
+            <div><strong>Social Inclusion</strong><br><small>Equal dignity for all communities</small></div>
+          </div>
+          <div class="pillar-item">
+            <i class="fas fa-briefcase" style="color:var(--clr-accent)"></i>
+            <div><strong>Economic Inclusion</strong><br><small>Access to jobs and financial resources</small></div>
+          </div>
+          <div class="pillar-item">
+            <i class="fas fa-graduation-cap" style="color:var(--clr-pink)"></i>
+            <div><strong>Educational Inclusion</strong><br><small>Equal access to quality education</small></div>
+          </div>
+          <div class="pillar-item">
+            <i class="fas fa-wifi" style="color:var(--clr-success)"></i>
+            <div><strong>Digital Inclusion</strong><br><small>Bridging the technology divide</small></div>
+          </div>
+        </div>
+      </div>
+      <div class="about-intro-visual reveal-right">
+        <div class="inclusion-card-visual">
+          <div class="inclusion-ring">
+            <div class="ring-item" style="--ang:0deg"><i class="fas fa-heart"></i></div>
+            <div class="ring-item" style="--ang:60deg"><i class="fas fa-graduation-cap"></i></div>
+            <div class="ring-item" style="--ang:120deg"><i class="fas fa-briefcase"></i></div>
+            <div class="ring-item" style="--ang:180deg"><i class="fas fa-home"></i></div>
+            <div class="ring-item" style="--ang:240deg"><i class="fas fa-heartbeat"></i></div>
+            <div class="ring-item" style="--ang:300deg"><i class="fas fa-balance-scale"></i></div>
+            <div class="ring-center"><i class="fas fa-globe-asia"></i><span>Inclusion</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     WHY POVERTY EXISTS — TIMELINE
+══════════════════════════════════════════ -->
+<section class="section-pad poverty-section" id="poverty">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="subtitle">Root Causes</div>
+      <h2>Why Does <span class="text-gradient">Poverty Persist</span>?</h2>
+      <p>Poverty is not a personal failure — it is a systemic issue rooted in unequal access and structural barriers.</p>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="poverty-timeline">
+      <div class="timeline-item reveal">
+        <div class="timeline-icon" style="background:rgba(229,36,59,.15);color:var(--clr-sdg1)"><i class="fas fa-book-open"></i></div>
+        <div class="timeline-content glass-card">
+          <h3>Lack of Quality Education</h3>
+          <p>Millions of children drop out due to financial hardship, distance, or lack of infrastructure. Without education, skill development stagnates and opportunities remain out of reach.</p>
+          <div class="timeline-stat">265M children out of school globally</div>
+        </div>
+      </div>
+      <div class="timeline-item timeline-right reveal">
+        <div class="timeline-icon" style="background:rgba(168,85,247,.15);color:#a855f7"><i class="fas fa-exclamation-triangle"></i></div>
+        <div class="timeline-content glass-card">
+          <h3>Information Asymmetry</h3>
+          <p>Most people in rural areas and urban slums have no knowledge of government schemes, scholarships, or skill programs they are entitled to — simply because information doesn't reach them.</p>
+          <div class="timeline-stat">70% of eligible Indians miss out on welfare benefits</div>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-icon" style="background:rgba(255,215,0,.12);color:var(--clr-accent)"><i class="fas fa-map-marker-alt"></i></div>
+        <div class="timeline-content glass-card">
+          <h3>Geographic & Digital Barriers</h3>
+          <p>Remote populations face physical isolation from economic centers. The digital divide further excludes communities from online job markets, e-learning, and digital banking.</p>
+          <div class="timeline-stat">500M Indians lack internet access</div>
+        </div>
+      </div>
+      <div class="timeline-item timeline-right reveal">
+        <div class="timeline-icon" style="background:rgba(16,185,129,.12);color:var(--clr-success)"><i class="fas fa-venus-mars"></i></div>
+        <div class="timeline-content glass-card">
+          <h3>Gender & Social Discrimination</h3>
+          <p>Women, SC/ST communities, and minorities face systemic discrimination in hiring, wages, and education access — perpetuating cycles of poverty across generations.</p>
+          <div class="timeline-stat">India ranks 127th in gender equality index</div>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-icon" style="background:rgba(236,72,153,.12);color:var(--clr-pink)"><i class="fas fa-industry"></i></div>
+        <div class="timeline-content glass-card">
+          <h3>Lack of Skill-Job Alignment</h3>
+          <p>Millions of youth possess informal skills but cannot translate them into formal employment because they lack certifications, soft skills, or knowledge of market demand.</p>
+          <div class="timeline-stat">47% of Indian graduates are unemployable</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     HOW AI CAN REDUCE POVERTY
+══════════════════════════════════════════ -->
+<section class="section-pad ai-section" id="ai">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="subtitle">The Solution</div>
+      <h2>How <span class="text-gradient">AI Can Reduce Poverty</span></h2>
+      <p>Artificial Intelligence, when deployed ethically and inclusively, can be a force multiplier for social good.</p>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="ai-grid stagger-children">
+      <div class="glass-card ai-card">
+        <div class="ai-card-icon"><i class="fas fa-robot"></i></div>
+        <h3>Personalised Matching</h3>
+        <p>AI analyses each individual's unique profile — education, skills, location, income — and recommends the most relevant jobs, courses, and schemes, eliminating the guesswork.</p>
+        <div class="ai-tag"><i class="fas fa-check"></i> Rule-based AI Engine</div>
+      </div>
+      <div class="glass-card ai-card">
+        <div class="ai-card-icon"><i class="fas fa-language"></i></div>
+        <h3>Language Accessibility</h3>
+        <p>NLP-powered translation makes complex government schemes and opportunities understandable in Hindi, Tamil, Bengali, and 10+ regional languages.</p>
+        <div class="ai-tag"><i class="fas fa-check"></i> Multilingual NLP</div>
+      </div>
+      <div class="glass-card ai-card">
+        <div class="ai-card-icon"><i class="fas fa-chart-line"></i></div>
+        <h3>Skill Gap Analysis</h3>
+        <p>AI identifies the exact skills you are missing for your target career and suggests the shortest path to acquire them through free, certified programs.</p>
+        <div class="ai-tag"><i class="fas fa-check"></i> Gap Analysis Algorithm</div>
+      </div>
+      <div class="glass-card ai-card">
+        <div class="ai-card-icon"><i class="fas fa-shield-alt"></i></div>
+        <h3>Fraud Prevention</h3>
+        <p>AI helps users identify genuine government schemes and legitimate job offers, protecting vulnerable populations from scams and exploitation.</p>
+        <div class="ai-tag"><i class="fas fa-check"></i> Scheme Verification</div>
+      </div>
+      <div class="glass-card ai-card">
+        <div class="ai-card-icon"><i class="fas fa-map"></i></div>
+        <h3>Geospatial Opportunity Mapping</h3>
+        <p>Location-aware AI maps the nearest skill centres, employment exchanges, and scheme offices to each user, reducing travel and access friction.</p>
+        <div class="ai-tag"><i class="fas fa-check"></i> Location Intelligence</div>
+      </div>
+      <div class="glass-card ai-card">
+        <div class="ai-card-icon"><i class="fas fa-user-graduate"></i></div>
+        <h3>Adaptive Learning Paths</h3>
+        <p>The platform adapts course recommendations as the user completes modules, creating a dynamic, ever-evolving career development journey.</p>
+        <div class="ai-tag"><i class="fas fa-check"></i> Adaptive Recommendation</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     MISSION & VISION
+══════════════════════════════════════════ -->
+<section class="section-pad mission-section" id="mission">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="subtitle">Our Purpose</div>
+      <h2>Mission <span class="text-gold">&</span> <span class="text-gradient">Vision</span></h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="mv-grid">
+      <div class="glass-card mv-card mission-card reveal-left">
+        <div class="mv-icon"><i class="fas fa-bullseye"></i></div>
+        <div class="mv-badge">Our Mission</div>
+        <h3>What We Do Every Day</h3>
+        <p>To democratise access to economic opportunity by leveraging AI to connect India's underserved individuals — across gender, caste, language, and geography — to jobs, education, and welfare programs that can transform their lives.</p>
+        <ul class="mv-list">
+          <li><i class="fas fa-arrow-right"></i> Free, accessible, zero-barrier platform</li>
+          <li><i class="fas fa-arrow-right"></i> Personalised for every individual</li>
+          <li><i class="fas fa-arrow-right"></i> Partnered with government & NGOs</li>
+          <li><i class="fas fa-arrow-right"></i> Continuously updated opportunity database</li>
+        </ul>
+      </div>
+
+      <div class="glass-card mv-card vision-card reveal-right">
+        <div class="mv-icon" style="background:var(--grad-gold)"><i class="fas fa-eye"></i></div>
+        <div class="mv-badge" style="background:rgba(255,215,0,.1);color:var(--clr-accent);border-color:rgba(255,215,0,.2)">Our Vision</div>
+        <h3>Where We Are Going</h3>
+        <p>A world where no individual is left behind due to lack of information or opportunity. We envision an India where every citizen — from the most remote village to the densest urban slum — can access AI-powered guidance to build a dignified, prosperous life.</p>
+        <ul class="mv-list">
+          <li><i class="fas fa-star" style="color:var(--clr-accent)"></i> 10 million users empowered by 2030</li>
+          <li><i class="fas fa-star" style="color:var(--clr-accent)"></i> Partnership with all 28 Indian states</li>
+          <li><i class="fas fa-star" style="color:var(--clr-accent)"></i> AI literacy for rural India</li>
+          <li><i class="fas fa-star" style="color:var(--clr-accent)"></i> Zero poverty, infinite opportunity</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Values -->
+    <div class="values-section reveal" style="margin-top:4rem">
+      <h3 style="text-align:center;margin-bottom:2rem">Our Core <span class="text-gradient">Values</span></h3>
+      <div class="values-grid stagger-children">
+        <div class="value-item glass-card">
+          <i class="fas fa-heart" style="color:var(--clr-sdg1)"></i>
+          <h4>Empathy First</h4>
+          <p>Every feature is designed by listening to the people it serves.</p>
+        </div>
+        <div class="value-item glass-card">
+          <i class="fas fa-lock-open" style="color:var(--clr-primary)"></i>
+          <h4>Open Access</h4>
+          <p>Completely free. No paywalls. No hidden charges. Ever.</p>
+        </div>
+        <div class="value-item glass-card">
+          <i class="fas fa-balance-scale" style="color:var(--clr-accent)"></i>
+          <h4>Ethical AI</h4>
+          <p>Unbiased, transparent algorithms that empower rather than exploit.</p>
+        </div>
+        <div class="value-item glass-card">
+          <i class="fas fa-leaf" style="color:var(--clr-success)"></i>
+          <h4>Sustainability</h4>
+          <p>Building solutions that last and align with global SDG frameworks.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section-pad">
+  <div class="container">
+    <div class="cta-banner reveal">
+      <h2>Join the <span class="text-gold">Movement</span></h2>
+      <p>Be part of an inclusive India where every person has the chance to thrive.</p>
+      <div>
+        <a href="{{ url_for('finder') }}" class="btn btn-primary btn-lg"><i class="fas fa-rocket"></i> Start Your Journey</a>
+        <a href="{{ url_for('contact') }}" class="btn btn-outline btn-lg"><i class="fas fa-envelope"></i> Get in Touch</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

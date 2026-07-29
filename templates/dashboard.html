@@ -1,0 +1,185 @@
+{% extends "base.html" %}
+{% block title %}Dashboard — AI for Inclusive Opportunities{% endblock %}
+{% block description %}Your personal dashboard showing profile completion, recommendation count, learning progress and opportunity score.{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+  <div class="page-header-bg"></div>
+  <div class="container page-header-content">
+    <div class="page-breadcrumb reveal"><a href="{{ url_for('index') }}">Home</a> <i class="fas fa-chevron-right"></i> Dashboard</div>
+    <h1 class="reveal"><i class="fas fa-chart-bar" style="color:var(--clr-primary)"></i> Your <span class="text-gradient">Dashboard</span></h1>
+    <p class="reveal">Track your progress, opportunities, and learning journey.</p>
+  </div>
+</div>
+
+<section class="section-pad dashboard-section">
+  <div class="container">
+
+    <!-- Stats Grid -->
+    <div class="stats-grid stagger-children">
+      <div class="glass-card stat-card">
+        <div class="stat-icon" style="background:rgba(108,99,255,.15);color:var(--clr-primary)"><i class="fas fa-users"></i></div>
+        <div class="stat-info">
+          <div class="stat-num" data-stat="total_users">—</div>
+          <div class="stat-label">Total Users</div>
+          <div class="stat-trend positive"><i class="fas fa-arrow-up"></i> +12% this week</div>
+        </div>
+      </div>
+      <div class="glass-card stat-card">
+        <div class="stat-icon" style="background:rgba(255,215,0,.1);color:var(--clr-accent)"><i class="fas fa-lightbulb"></i></div>
+        <div class="stat-info">
+          <div class="stat-num" data-stat="total_recs">—</div>
+          <div class="stat-label">Recommendations Generated</div>
+          <div class="stat-trend positive"><i class="fas fa-arrow-up"></i> Growing daily</div>
+        </div>
+      </div>
+      <div class="glass-card stat-card">
+        <div class="stat-icon" style="background:rgba(16,185,129,.12);color:var(--clr-success)"><i class="fas fa-star"></i></div>
+        <div class="stat-info">
+          <div class="stat-num" data-stat="avg_score">—</div>
+          <div class="stat-label">Avg. Priority Score</div>
+          <div class="stat-trend neutral"><i class="fas fa-minus"></i> Based on all users</div>
+        </div>
+      </div>
+      <div class="glass-card stat-card">
+        <div class="stat-icon" style="background:rgba(236,72,153,.12);color:var(--clr-pink)"><i class="fas fa-university"></i></div>
+        <div class="stat-info">
+          <div class="stat-num" data-stat="total_schemes">—</div>
+          <div class="stat-label">Gov. Schemes Available</div>
+          <div class="stat-trend positive"><i class="fas fa-arrow-up"></i> Updated monthly</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Dashboard Grid -->
+    <div class="dashboard-grid">
+
+      <!-- Profile Completion -->
+      <div class="glass-card dashboard-card profile-card reveal-left">
+        <div class="card-header">
+          <h3><i class="fas fa-user-circle"></i> Profile Completion</h3>
+          <span class="card-badge" id="profileBadge">—%</span>
+        </div>
+        <div class="profile-ring-wrapper">
+          <svg class="profile-ring" viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="48" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="10"/>
+            <circle id="profileArc" cx="60" cy="60" r="48" fill="none"
+                    stroke="url(#profileGrad)" stroke-width="10"
+                    stroke-linecap="round" stroke-dasharray="301.6"
+                    stroke-dashoffset="301.6"
+                    transform="rotate(-90 60 60)"/>
+            <defs>
+              <linearGradient id="profileGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#6c63ff"/>
+                <stop offset="100%" stop-color="#a855f7"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <div class="ring-label">
+            <span id="profilePct">0%</span>
+            <small>Complete</small>
+          </div>
+        </div>
+        <div class="profile-fields" id="profileFields">
+          <div class="field-check"><i class="fas fa-circle-notch fa-spin"></i> Loading…</div>
+        </div>
+        <a href="{{ url_for('finder') }}" class="btn btn-primary btn-sm" style="margin-top:1rem;width:100%;justify-content:center">
+          <i class="fas fa-edit"></i> Complete Profile
+        </a>
+      </div>
+
+      <!-- Learning Progress -->
+      <div class="glass-card dashboard-card reveal">
+        <div class="card-header">
+          <h3><i class="fas fa-book-open"></i> Learning Progress</h3>
+        </div>
+        <div class="progress-list">
+          <div class="progress-item">
+            <div class="pi-header"><span>Digital Skills</span><span class="pi-pct">72%</span></div>
+            <div class="pi-track"><div class="pi-fill" style="width:0%;background:var(--grad-primary)" data-width="72"></div></div>
+          </div>
+          <div class="progress-item">
+            <div class="pi-header"><span>Communication</span><span class="pi-pct">55%</span></div>
+            <div class="pi-track"><div class="pi-fill" style="width:0%;background:linear-gradient(90deg,#ffd700,#f59e0b)" data-width="55"></div></div>
+          </div>
+          <div class="progress-item">
+            <div class="pi-header"><span>Problem Solving</span><span class="pi-pct">40%</span></div>
+            <div class="pi-track"><div class="pi-fill" style="width:0%;background:linear-gradient(90deg,#ec4899,#a855f7)" data-width="40"></div></div>
+          </div>
+          <div class="progress-item">
+            <div class="pi-header"><span>Financial Literacy</span><span class="pi-pct">28%</span></div>
+            <div class="pi-track"><div class="pi-fill" style="width:0%;background:linear-gradient(90deg,#10b981,#059669)" data-width="28"></div></div>
+          </div>
+          <div class="progress-item">
+            <div class="pi-header"><span>Leadership</span><span class="pi-pct">15%</span></div>
+            <div class="pi-track"><div class="pi-fill" style="width:0%;background:linear-gradient(90deg,#6366f1,#3b82f6)" data-width="15"></div></div>
+          </div>
+        </div>
+        <a href="{{ url_for('recommendations') }}" class="btn btn-outline btn-sm" style="margin-top:1.5rem;width:100%;justify-content:center">
+          <i class="fas fa-graduation-cap"></i> View Course Recommendations
+        </a>
+      </div>
+
+      <!-- Opportunity Score Gauge -->
+      <div class="glass-card dashboard-card reveal-right">
+        <div class="card-header"><h3><i class="fas fa-tachometer-alt"></i> Opportunity Score</h3></div>
+        <div class="gauge-wrapper">
+          <svg class="gauge-svg" viewBox="0 0 200 120">
+            <path d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="16" stroke-linecap="round"/>
+            <path id="gaugeArc" d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="url(#gaugeGrad)" stroke-width="16" stroke-linecap="round" stroke-dasharray="251.3" stroke-dashoffset="251.3"/>
+            <defs><linearGradient id="gaugeGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e5243b"/><stop offset="50%" stop-color="#ffd700"/><stop offset="100%" stop-color="#10b981"/></linearGradient></defs>
+          </svg>
+          <div class="gauge-value"><span id="gaugeNum">0</span><small>/100</small></div>
+          <div class="gauge-labels">
+            <span style="color:var(--clr-error)">Low</span>
+            <span style="color:var(--clr-accent)">Medium</span>
+            <span style="color:var(--clr-success)">High</span>
+          </div>
+        </div>
+        <div class="score-interpretation" id="scoreInterpretation">
+          <p>Complete your profile to see your opportunity score.</p>
+        </div>
+      </div>
+
+      <!-- Recent Activity / Notifications -->
+      <div class="glass-card dashboard-card activity-card reveal" style="grid-column:1/-1">
+        <div class="card-header">
+          <h3><i class="fas fa-bell"></i> Recent Activity &amp; Notifications</h3>
+          <button id="refreshNotifs" class="btn btn-outline btn-sm"><i class="fas fa-sync-alt"></i> Refresh</button>
+        </div>
+        <div class="activity-list" id="activityList">
+          <div class="activity-empty"><i class="fas fa-inbox"></i><p>No recent activity</p></div>
+        </div>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="glass-card dashboard-card quick-actions reveal" style="grid-column:1/-1">
+        <div class="card-header"><h3><i class="fas fa-bolt"></i> Quick Actions</h3></div>
+        <div class="actions-grid">
+          <a href="{{ url_for('finder') }}" class="action-btn">
+            <div class="action-icon" style="background:rgba(108,99,255,.15);color:var(--clr-primary)"><i class="fas fa-search"></i></div>
+            <span>Find Opportunities</span>
+          </a>
+          <a href="{{ url_for('recommendations') }}" class="action-btn">
+            <div class="action-icon" style="background:rgba(255,215,0,.12);color:var(--clr-accent)"><i class="fas fa-lightbulb"></i></div>
+            <span>View Recommendations</span>
+          </a>
+          <a href="{{ url_for('about') }}" class="action-btn">
+            <div class="action-icon" style="background:rgba(16,185,129,.12);color:var(--clr-success)"><i class="fas fa-info-circle"></i></div>
+            <span>About Platform</span>
+          </a>
+          <a href="{{ url_for('contact') }}" class="action-btn">
+            <div class="action-icon" style="background:rgba(236,72,153,.12);color:var(--clr-pink)"><i class="fas fa-envelope"></i></div>
+            <span>Contact Us</span>
+          </a>
+        </div>
+      </div>
+
+    </div><!-- /dashboard-grid -->
+  </div>
+</section>
+
+{% endblock %}
+{% block extra_js %}<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>{% endblock %}

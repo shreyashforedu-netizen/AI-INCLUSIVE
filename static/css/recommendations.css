@@ -1,0 +1,173 @@
+/* recommendations.css */
+
+.recs-section { padding: 2rem 0 var(--section-pad); }
+
+/* No User */
+.no-user-state { text-align: center; padding: 2rem 0; }
+.recs-loading  { text-align: center; padding: 5rem 0; color: var(--clr-text-muted); }
+
+/* User Banner */
+.user-banner {
+  display: flex; align-items: center; gap: 1.5rem;
+  padding: 1.75rem 2rem; margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+.user-avatar { font-size: 3.5rem; color: var(--clr-primary); flex-shrink: 0; }
+.user-info   { flex: 1; min-width: 200px; }
+.user-info h3 { font-size: 1.3rem; margin-bottom: .5rem; }
+.user-tags    { display: flex; flex-wrap: wrap; gap: .4rem; }
+.user-tag {
+  display: inline-flex; align-items: center; gap: .3rem;
+  padding: .2rem .7rem; border-radius: var(--radius-full);
+  background: rgba(108,99,255,.1); border: 1px solid rgba(108,99,255,.2);
+  color: var(--clr-primary); font-size: .75rem;
+}
+
+/* Priority Ring */
+.priority-score-badge { text-align: center; flex-shrink: 0; }
+.priority-ring {
+  position: relative; width: 80px; height: 80px;
+  display: flex; align-items: center; justify-content: center;
+}
+.priority-ring svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.priority-ring span {
+  font-family: var(--font-display); font-size: 1.3rem; font-weight: 800;
+  background: var(--grad-primary); -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent; background-clip:text;
+  position: relative; z-index: 1;
+}
+.priority-label { font-size: .72rem; color: var(--clr-text-muted); margin-top: .25rem; }
+
+/* Tabs */
+.rec-tabs {
+  display: flex; gap: .5rem; flex-wrap: wrap;
+  margin-bottom: 2rem;
+  background: var(--clr-card);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg); padding: .5rem;
+}
+.rec-tab {
+  display: flex; align-items: center; gap: .4rem;
+  padding: .6rem 1.2rem; border-radius: var(--radius-md);
+  font-size: .88rem; font-weight: 600;
+  background: none; border: none; cursor: pointer;
+  color: var(--clr-text-muted); transition: all var(--trans-base);
+  font-family: var(--font-body);
+}
+.rec-tab:hover { color: var(--clr-text); background: rgba(255,255,255,.05); }
+.rec-tab.active { background: var(--grad-primary); color: #fff; box-shadow: var(--shadow-glow); }
+
+/* Panels */
+.rec-tab-panels { }
+.rec-panel { display: none; animation: stepIn .4s ease; }
+.rec-panel.active { display: block; }
+
+.panel-header {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1rem; margin-bottom: 1.75rem;
+}
+.panel-header h3 { display: flex; align-items: center; gap: .6rem; }
+.salary-badge {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .4rem 1rem; border-radius: var(--radius-full);
+  background: rgba(255,215,0,.1); color: var(--clr-accent);
+  border: 1px solid rgba(255,215,0,.2); font-size: .85rem;
+}
+
+/* Cards Grid */
+.rec-cards-grid {
+  display: grid; grid-template-columns: repeat(auto-fill,minmax(270px,1fr));
+  gap: 1.5rem;
+}
+
+/* Job Card */
+.job-card, .course-card, .scheme-card, .scholarship-card {
+  background: var(--glass-bg); backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border); border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  transition: all var(--trans-base);
+  animation: cardIn .5s ease both;
+}
+@keyframes cardIn {
+  from { opacity:0; transform:translateY(20px) scale(.97); }
+  to   { opacity:1; transform:none; }
+}
+.job-card:hover, .course-card:hover, .scheme-card:hover, .scholarship-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-glow);
+  border-color: rgba(108,99,255,.3);
+}
+
+.card-chip {
+  display: inline-flex; align-items: center; gap: .3rem;
+  padding: .2rem .7rem; border-radius: var(--radius-full);
+  font-size: .72rem; font-weight: 700; margin-bottom: .75rem;
+  background: rgba(108,99,255,.1); color: var(--clr-primary);
+  border: 1px solid rgba(108,99,255,.2);
+}
+.card-title { font-size: 1.05rem; font-weight: 700; margin-bottom: .3rem; }
+.card-sub   { font-size: .82rem; color: var(--clr-text-muted); margin-bottom: .75rem; }
+.card-meta  { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .75rem; }
+.card-meta span {
+  display: inline-flex; align-items: center; gap: .3rem;
+  font-size: .75rem; color: var(--clr-text-muted);
+  padding: .15rem .6rem; border-radius: var(--radius-full);
+  background: rgba(255,255,255,.05); border: 1px solid var(--clr-border);
+}
+.card-salary {
+  font-family: var(--font-display); font-size: 1rem; font-weight: 700;
+  background: var(--grad-gold); -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent; background-clip:text;
+  margin-top: .5rem;
+}
+
+/* Scholarship */
+.scholarship-amount { font-size: 1.3rem; font-weight: 800; color: var(--clr-accent); margin: .5rem 0; }
+
+/* Roadmap */
+.roadmap-timeline { display: flex; flex-direction: column; gap: 1.5rem; }
+.roadmap-step {
+  display: flex; gap: 1.5rem; align-items: flex-start;
+  background: var(--glass-bg); backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border); border-radius: var(--radius-lg);
+  padding: 1.75rem; transition: all var(--trans-base);
+  animation: cardIn .5s ease both;
+}
+.roadmap-step:hover { transform: translateX(6px); border-color: rgba(108,99,255,.3); }
+.roadmap-step-num {
+  width: 52px; height: 52px; flex-shrink: 0;
+  border-radius: 50%; background: var(--grad-primary);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; font-weight: 800; color: #fff;
+  box-shadow: var(--shadow-glow);
+}
+.roadmap-step-body h4 { font-size: 1.05rem; margin-bottom: .4rem; }
+.roadmap-step-body p  { font-size: .88rem; color: var(--clr-text-muted); margin-bottom: .5rem; }
+.roadmap-duration {
+  display: inline-flex; align-items: center; gap: .3rem;
+  font-size: .75rem; color: var(--clr-primary);
+  padding: .2rem .7rem; border-radius: var(--radius-full);
+  background: rgba(108,99,255,.1); border: 1px solid rgba(108,99,255,.2);
+}
+
+/* Missing Skills */
+.missing-skills-grid { display: flex; flex-wrap: wrap; gap: 1rem; }
+.missing-skill-chip {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .6rem 1.2rem; border-radius: var(--radius-full);
+  background: rgba(239,68,68,.08); color: var(--clr-error);
+  border: 1px solid rgba(239,68,68,.2); font-size: .9rem; font-weight: 600;
+  transition: all var(--trans-base);
+}
+.missing-skill-chip:hover { background: rgba(239,68,68,.15); transform: scale(1.05); }
+.missing-skill-chip i { color: var(--clr-error); }
+.missing-skills-note {
+  margin-top: 2rem; padding: 1.5rem; border-radius: var(--radius-md);
+  background: rgba(108,99,255,.06); border: 1px solid rgba(108,99,255,.15);
+  font-size: .9rem;
+}
+
+@media (max-width: 600px) {
+  .user-banner { flex-direction: column; text-align: center; }
+  .rec-tabs    { justify-content: center; }
+}
